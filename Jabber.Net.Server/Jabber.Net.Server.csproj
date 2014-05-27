@@ -1,0 +1,274 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{53296DF8-F360-475B-A1F0-30F570EAEF9F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Jabber.Net.Server</RootNamespace>
+    <AssemblyName>Jabber.Net.Server</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <StartupObject>
+    </StartupObject>
+    <CodeContractsAssemblyMode>0</CodeContractsAssemblyMode>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
+    <PublishUrl>http://localhost/Jabber.Net.Server/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeContractsEnableRuntimeChecking>False</CodeContractsEnableRuntimeChecking>
+    <CodeContractsRuntimeOnlyPublicSurface>False</CodeContractsRuntimeOnlyPublicSurface>
+    <CodeContractsRuntimeThrowOnFailure>True</CodeContractsRuntimeThrowOnFailure>
+    <CodeContractsRuntimeCallSiteRequires>False</CodeContractsRuntimeCallSiteRequires>
+    <CodeContractsRuntimeSkipQuantifiers>False</CodeContractsRuntimeSkipQuantifiers>
+    <CodeContractsRunCodeAnalysis>False</CodeContractsRunCodeAnalysis>
+    <CodeContractsNonNullObligations>False</CodeContractsNonNullObligations>
+    <CodeContractsBoundsObligations>False</CodeContractsBoundsObligations>
+    <CodeContractsArithmeticObligations>False</CodeContractsArithmeticObligations>
+    <CodeContractsEnumObligations>False</CodeContractsEnumObligations>
+    <CodeContractsRedundantAssumptions>False</CodeContractsRedundantAssumptions>
+    <CodeContractsRunInBackground>True</CodeContractsRunInBackground>
+    <CodeContractsShowSquigglies>False</CodeContractsShowSquigglies>
+    <CodeContractsUseBaseLine>False</CodeContractsUseBaseLine>
+    <CodeContractsEmitXMLDocs>False</CodeContractsEmitXMLDocs>
+    <CodeContractsCustomRewriterAssembly>
+    </CodeContractsCustomRewriterAssembly>
+    <CodeContractsCustomRewriterClass>
+    </CodeContractsCustomRewriterClass>
+    <CodeContractsLibPaths>
+    </CodeContractsLibPaths>
+    <CodeContractsExtraRewriteOptions>
+    </CodeContractsExtraRewriteOptions>
+    <CodeContractsExtraAnalysisOptions>
+    </CodeContractsExtraAnalysisOptions>
+    <CodeContractsBaseLineFile>
+    </CodeContractsBaseLineFile>
+    <CodeContractsCacheAnalysisResults>False</CodeContractsCacheAnalysisResults>
+    <CodeContractsRuntimeCheckingLevel>Preconditions</CodeContractsRuntimeCheckingLevel>
+    <CodeContractsReferenceAssembly>%28none%29</CodeContractsReferenceAssembly>
+    <CodeContractsAnalysisWarningLevel>0</CodeContractsAnalysisWarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Practices.Unity, Version=2.1.505.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Refs\Microsoft Unity Application Block 2.1\Bin\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=2.1.505.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Refs\Microsoft Unity Application Block 2.1\Bin\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Collections\ReaderWriterLockDictionary.cs" />
+    <Compile Include="Components\ComponentHandler.cs" />
+    <Compile Include="Connections\BoshXmppConnection.cs" />
+    <Compile Include="Connections\BoshXmppListener.cs" />
+    <Compile Include="Connections\BoshXmppAggregator.cs" />
+    <Compile Include="Connections\IXmppTlsConnection.cs" />
+    <Compile Include="Connections\IXmppConnection.cs" />
+    <Compile Include="Connections\TcpXmppConnection.cs" />
+    <Compile Include="Data\DbManager.cs" />
+    <Compile Include="Data\ISqlDialect.cs" />
+    <Compile Include="Data\ISqlInstruction.cs" />
+    <Compile Include="Data\MySQLDialect.cs" />
+    <Compile Include="Data\SqlDialect.cs" />
+    <Compile Include="Data\SQLiteDialect.cs" />
+    <Compile Include="Data\Sql\BetweenExp.cs" />
+    <Compile Include="Data\Sql\EqColumnsExp.cs" />
+    <Compile Include="Data\Sql\EqExp.cs" />
+    <Compile Include="Data\Sql\ExistsExp.cs" />
+    <Compile Include="Data\Sql\Exp.cs" />
+    <Compile Include="Data\Sql\InExp.cs" />
+    <Compile Include="Data\Sql\JunctionExp.cs" />
+    <Compile Include="Data\Sql\LGtExp.cs" />
+    <Compile Include="Data\Sql\LikeExp.cs" />
+    <Compile Include="Data\Sql\SelectAgregate.cs" />
+    <Compile Include="Data\Sql\SqlCreate.cs" />
+    <Compile Include="Data\Sql\SqlDelete.cs" />
+    <Compile Include="Data\Sql\SqlExp.cs" />
+    <Compile Include="Data\Sql\SqlIdentifier.cs" />
+    <Compile Include="Data\Sql\SqlInsert.cs" />
+    <Compile Include="Data\Sql\SqlQuery.cs" />
+    <Compile Include="Data\Sql\SqlUpdate.cs" />
+    <Compile Include="Data\Sql\SubExp.cs" />
+    <Compile Include="Handlers\IXmppHandlerInvoker.cs" />
+    <Compile Include="Handlers\Results\XmppProcessResult.cs" />
+    <Compile Include="Handlers\Results\XmppErrorResult.cs" />
+    <Compile Include="Handlers\Results\XmppRequestResult.cs" />
+    <Compile Include="Handlers\Results\XmppComponentResult.cs" />
+    <Compile Include="Handlers\Results\XmppCloseResult.cs" />
+    <Compile Include="Handlers\XmppDefaultHandler.cs" />
+    <Compile Include="Handlers\XmppValidationAttribute.cs" />
+    <Compile Include="Muc\MucPresenceHandler.cs" />
+    <Compile Include="Muc\MucDiscoItemsHandler.cs" />
+    <Compile Include="Resources\RS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RS.resx</DependentUpon>
+    </Compile>
+    <Compile Include="S2C\ClientVCardHandler.cs" />
+    <Compile Include="S2C\ClientMessageHandler.cs" />
+    <Compile Include="S2C\ClientLastHandler.cs" />
+    <Compile Include="S2C\BoshHandler.cs" />
+    <Compile Include="S2C\TlsHandler.cs" />
+    <Compile Include="S2C\ServiceTimeHandler.cs" />
+    <Compile Include="S2C\PresenceUnavailableHandler.cs" />
+    <Compile Include="S2C\PresenceSubscriptionAttribute.cs" />
+    <Compile Include="S2C\PresenceAvailableHandler.cs" />
+    <Compile Include="S2C\PresenceSubscribedHandler.cs" />
+    <Compile Include="S2C\PresenceSubscribeHandler.cs" />
+    <Compile Include="S2C\ClientRosterHandler.cs" />
+    <Compile Include="S2C\PresenceFilterAttribute.cs" />
+    <Compile Include="S2C\PresenceUnsubscribedHandler.cs" />
+    <Compile Include="S2C\PresenceUnsubscribeHandler.cs" />
+    <Compile Include="S2C\RosterPush.cs" />
+    <Compile Include="S2C\ServiceLastHandler.cs" />
+    <Compile Include="S2C\PrivateHandler.cs" />
+    <Compile Include="S2C\IQAttribute.cs" />
+    <Compile Include="S2C\RegisterHandler.cs" />
+    <Compile Include="S2C\ServiceVersionHandler.cs" />
+    <Compile Include="S2C\ServiceVCardHandler.cs" />
+    <Compile Include="S2C\ServiceDiscoInfoHandler.cs" />
+    <Compile Include="S2C\ServiceDiscoItemsHandler.cs" />
+    <Compile Include="S2C\ServiceInfo.cs" />
+    <Compile Include="S2C\SessionHandler.cs" />
+    <Compile Include="Handlers\XmppHandlerStorage.cs" />
+    <Compile Include="IXmppResolver.cs" />
+    <Compile Include="JabberStanzaException.cs" />
+    <Compile Include="JabberSaslException.cs" />
+    <Compile Include="JabberStreamException.cs" />
+    <Compile Include="Handlers\IXmppErrorHandler.cs" />
+    <Compile Include="Handlers\IXmppCloseHandler.cs" />
+    <Compile Include="Handlers\IXmppHandler.cs" />
+    <Compile Include="Handlers\IXmppRegisterHandler.cs" />
+    <Compile Include="Handlers\XmppHandler.cs" />
+    <Compile Include="Handlers\XmppHandlerContext.cs" />
+    <Compile Include="Handlers\XmppHandlerManager.cs" />
+    <Compile Include="Handlers\XmppHandlerResult.cs" />
+    <Compile Include="Handlers\XmppHandlerRouter.cs" />
+    <Compile Include="Handlers\Results\XmppSendResult.cs" />
+    <Compile Include="JabberException.cs" />
+    <Compile Include="JabberNetServer.cs" />
+    <Compile Include="Connections\IXmppListener.cs" />
+    <Compile Include="Connections\TcpXmppListener.cs" />
+    <Compile Include="Connections\XmppListenerManager.cs" />
+    <Compile Include="Log.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="S2C\AuthDigestMD5Handler.cs" />
+    <Compile Include="S2C\BindHandler.cs" />
+    <Compile Include="S2C\ClientStreamHandler.cs" />
+    <Compile Include="Sessions\XmppSession.cs" />
+    <Compile Include="Sessions\XmppSessionManager.cs" />
+    <Compile Include="Storages\IXmppElementStorage.cs" />
+    <Compile Include="Storages\StorageExtensions.cs" />
+    <Compile Include="Storages\XmppElementStorage.cs" />
+    <Compile Include="Storages\XmppUserStorage.cs" />
+    <Compile Include="Storages\IXmppUserStorage.cs" />
+    <Compile Include="Storages\XmppStorageManager.cs" />
+    <Compile Include="Args.cs" />
+    <Compile Include="Utils\RandomUniqueId.cs" />
+    <Compile Include="Utils\GuidUniqueId.cs" />
+    <Compile Include="Utils\IUniqueId.cs" />
+    <Compile Include="Utils\IncrementalUniqueId.cs" />
+    <Compile Include="Utils\JidTypeConverter.cs" />
+    <Compile Include="Utils\ReaderWriterLock.cs" />
+    <Compile Include="Utils\TaskQueue.cs" />
+    <Compile Include="Utils\UnixDateTime.cs" />
+    <Compile Include="XmppUser.cs" />
+    <Compile Include="Xmpp\XmppStreamArgs.cs" />
+    <Compile Include="Xmpp\XmppStreamState.cs" />
+    <Compile Include="Xmpp\XmppStreamWriter.cs" />
+    <Compile Include="Xmpp\XmppStreamReader.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\agsXMPP\agsXMPP.csproj">
+      <Project>{91EA0D0B-D3BA-497F-AFEB-2CAD59DEBA0E}</Project>
+      <Name>agsXMPP</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\RS.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>RS.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ToDo.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
