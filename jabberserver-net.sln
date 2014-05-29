@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jabber.Net.Server", "Jabber.Net.Server\Jabber.Net.Server.csproj", "{53296DF8-F360-475B-A1F0-30F570EAEF9F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "agsXMPP", "agsXMPP\agsXMPP.csproj", "{91EA0D0B-D3BA-497F-AFEB-2CAD59DEBA0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jabber.Net", "Jabber.Net\Jabber.Net.csproj", "{1226980A-3AF2-4DD6-985B-2FE7A5D47A2E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jabber.Net.Config", "Jabber.Net.Config\Jabber.Net.Config.csproj", "{19A6C8C7-CDEB-420E-ADEE-B1F376C6F258}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{53296DF8-F360-475B-A1F0-30F570EAEF9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53296DF8-F360-475B-A1F0-30F570EAEF9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53296DF8-F360-475B-A1F0-30F570EAEF9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53296DF8-F360-475B-A1F0-30F570EAEF9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91EA0D0B-D3BA-497F-AFEB-2CAD59DEBA0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91EA0D0B-D3BA-497F-AFEB-2CAD59DEBA0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91EA0D0B-D3BA-497F-AFEB-2CAD59DEBA0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91EA0D0B-D3BA-497F-AFEB-2CAD59DEBA0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1226980A-3AF2-4DD6-985B-2FE7A5D47A2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1226980A-3AF2-4DD6-985B-2FE7A5D47A2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1226980A-3AF2-4DD6-985B-2FE7A5D47A2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1226980A-3AF2-4DD6-985B-2FE7A5D47A2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19A6C8C7-CDEB-420E-ADEE-B1F376C6F258}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19A6C8C7-CDEB-420E-ADEE-B1F376C6F258}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19A6C8C7-CDEB-420E-ADEE-B1F376C6F258}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19A6C8C7-CDEB-420E-ADEE-B1F376C6F258}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

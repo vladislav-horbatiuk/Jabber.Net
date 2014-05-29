@@ -88,11 +88,11 @@
   <ItemGroup>
     <Reference Include="Microsoft.Practices.Unity, Version=2.1.505.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Refs\Microsoft Unity Application Block 2.1\Bin\Microsoft.Practices.Unity.dll</HintPath>
+      <HintPath>..\Microsoft Unity\Microsoft.Practices.Unity.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.Unity.Configuration, Version=2.1.505.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Refs\Microsoft Unity Application Block 2.1\Bin\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+      <HintPath>..\Microsoft Unity\Microsoft.Practices.Unity.Configuration.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -117,30 +117,6 @@
     <Compile Include="Connections\IXmppTlsConnection.cs" />
     <Compile Include="Connections\IXmppConnection.cs" />
     <Compile Include="Connections\TcpXmppConnection.cs" />
-    <Compile Include="Data\DbManager.cs" />
-    <Compile Include="Data\ISqlDialect.cs" />
-    <Compile Include="Data\ISqlInstruction.cs" />
-    <Compile Include="Data\MySQLDialect.cs" />
-    <Compile Include="Data\SqlDialect.cs" />
-    <Compile Include="Data\SQLiteDialect.cs" />
-    <Compile Include="Data\Sql\BetweenExp.cs" />
-    <Compile Include="Data\Sql\EqColumnsExp.cs" />
-    <Compile Include="Data\Sql\EqExp.cs" />
-    <Compile Include="Data\Sql\ExistsExp.cs" />
-    <Compile Include="Data\Sql\Exp.cs" />
-    <Compile Include="Data\Sql\InExp.cs" />
-    <Compile Include="Data\Sql\JunctionExp.cs" />
-    <Compile Include="Data\Sql\LGtExp.cs" />
-    <Compile Include="Data\Sql\LikeExp.cs" />
-    <Compile Include="Data\Sql\SelectAgregate.cs" />
-    <Compile Include="Data\Sql\SqlCreate.cs" />
-    <Compile Include="Data\Sql\SqlDelete.cs" />
-    <Compile Include="Data\Sql\SqlExp.cs" />
-    <Compile Include="Data\Sql\SqlIdentifier.cs" />
-    <Compile Include="Data\Sql\SqlInsert.cs" />
-    <Compile Include="Data\Sql\SqlQuery.cs" />
-    <Compile Include="Data\Sql\SqlUpdate.cs" />
-    <Compile Include="Data\Sql\SubExp.cs" />
     <Compile Include="Handlers\IXmppHandlerInvoker.cs" />
     <Compile Include="Handlers\Results\XmppProcessResult.cs" />
     <Compile Include="Handlers\Results\XmppErrorResult.cs" />
