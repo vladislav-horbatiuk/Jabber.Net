@@ -1,37 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
+﻿using System.Linq;
 using agsXMPP;
-using agsXMPP.protocol.client;
 using agsXMPP.protocol.iq.roster;
 using agsXMPP.protocol.iq.vcard;
-using agsXMPP.util;
+using System;
+using System.Collections.Generic;
 
 namespace Jabber.Net.Server.Storages
 {
     public class XmppUserStorage : IXmppUserStorage
     {
-        private readonly string connectionStringName;
-        private readonly IXmppElementStorage elements;
+        private readonly string _connectionStringName;
+        private readonly IXmppElementStorage _elements;
 
+        private static readonly List<XmppUser> _users = new List<XmppUser>
+        {
+            new XmppUser("123", "123"),
+            new XmppUser("1", "1"),
+        };
 
+        private static readonly List<RosterItem> _rosterItems = new List<RosterItem>
+        {
+            new RosterItem(new Jid("1")),
+            new RosterItem(new Jid("2")),
+        };
+        
         public XmppUserStorage(string connectionStringName, IXmppElementStorage elements)
         {
-            Args.NotNull(connectionStringName, "connectionStringName");
-            Args.NotNull(elements, "elements");
-
-            this.connectionStringName = connectionStringName;
-            this.elements = elements;
+            _connectionStringName = connectionStringName;
+            _elements = elements;
         }
-
-
+        
         public XmppUser GetUser(string username)
         {
             CheckUsername(username);
 
-            return new XmppUser(username, "123");
-
+            return _users.FirstOrDefault(o => o.Name == username);
         }
 
         public void SaveUser(XmppUser user)
@@ -40,39 +43,44 @@ namespace Jabber.Net.Server.Storages
             Args.Requires<ArgumentException>(!string.IsNullOrEmpty(user.Name), "User name can not be empty.");
             Args.Requires<ArgumentException>(!string.IsNullOrEmpty(user.Password), "User password can not be empty.");
 
-
+            _users.Add(user);
         }
 
         public bool RemoveUser(string username)
         {
             CheckUsername(username);
 
-            var affected = 0;
+            var user = GetUser(username);
 
-            elements.RemoveElements(new Jid(username), "%");
-            return 0 < affected;
+            if (user != null)
+            {
+                _users.Remove(user);
+                _elements.RemoveElements(new Jid(username), "%");
+                return true;
+            }
+
+            return false;
         }
-
 
         public Vcard GetVCard(string username)
         {
             CheckUsername(username);
-            return (Vcard)elements.GetElement(new Jid(username), "vcard");
+            return (Vcard)_elements.GetElement(new Jid(username), "vcard");
         }
 
         public void SetVCard(string username, Vcard vcard)
         {
             CheckUsername(username);
+
             if (vcard == null)
             {
-                elements.RemoveElements(new Jid(username), "vcard");
+                _elements.RemoveElements(new Jid(username), "vcard");
             }
             else
             {
-                elements.SaveElement(new Jid(username), "vcard", vcard);
+                _elements.SaveElement(new Jid(username), "vcard", vcard);
             }
         }
-
 
         public IEnumerable<RosterItem> GetRosterItems(Jid user)
         {
@@ -87,7 +95,6 @@ namespace Jabber.Net.Server.Storages
             Args.NotNull(contact, "contact");
 
             return new RosterItem();
-
         }
 
         public IEnumerable<Jid> GetSubscribers(Jid contact)
@@ -101,6 +108,8 @@ namespace Jabber.Net.Server.Storages
         {
             Args.NotNull(user, "user");
             Args.NotNull(ri, "ri");
+
+            _rosterItems.Add(ri);
 
         }
 
@@ -116,16 +125,13 @@ namespace Jabber.Net.Server.Storages
         public IEnumerable<Jid> GetAskers(Jid contact)
         {
             Args.NotNull(contact, "contact");
+
             return new List<Jid>();
-
         }
-
-
+        
         private void CheckUsername(string username)
         {
             Args.Requires<ArgumentException>(!string.IsNullOrEmpty(username), "User name can not be empty.");
         }
-
-
     }
 }
