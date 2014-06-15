@@ -11,45 +11,15 @@ namespace Jabber.Net.Server.Storages
     {
         private readonly string _connectionStringName;
         private readonly IXmppElementStorage _elements;
-        const string Server = "jabber.ecampus.kpi.ua";
+        private readonly CampusClient _campusClient;
 
-        private static readonly List<XmppUser> _users = new List<XmppUser>
+        public XmppUserStorage()
         {
-            new XmppUser("123", "123"),
-            new XmppUser("u1", "1"),
-            new XmppUser("u2", "2"),
-        };
-
-        private static List<RosterItem> _rosterItems;
-        private static List<Jid> _subscribers;
-
-        private static List<RosterItem> RosterItems
-        {
-            get
-            {
-                if (_rosterItems == null)
-                {
-                    _rosterItems = Subscribers.Select(o => new RosterItem(o)).ToList();
-                }
-
-                return _rosterItems;
-            }
-        }
-
-        private static IEnumerable<Jid> Subscribers
-        {
-            get
-            {
-                if (_subscribers == null)
-                {
-                    _subscribers = _users.Select(o => new Jid(o.Name, Server, "")).ToList();
-                }
-
-                return _subscribers;
-            }
+            _campusClient = new CampusClient();
         }
 
         public XmppUserStorage(string connectionStringName, IXmppElementStorage elements)
+            : this()
         {
             _connectionStringName = connectionStringName;
             _elements = elements;
@@ -59,7 +29,7 @@ namespace Jabber.Net.Server.Storages
         {
             CheckUsername(username);
 
-            return _users.FirstOrDefault(o => o.Name == username);
+            return _campusClient.GetUser(username);
         }
 
         public void SaveUser(XmppUser user)
@@ -68,7 +38,7 @@ namespace Jabber.Net.Server.Storages
             Args.Requires<ArgumentException>(!string.IsNullOrEmpty(user.Name), "User name can not be empty.");
             Args.Requires<ArgumentException>(!string.IsNullOrEmpty(user.Password), "User password can not be empty.");
 
-            _users.Add(user);
+            //_users.Add(user);
         }
 
         public bool RemoveUser(string username)
@@ -79,7 +49,7 @@ namespace Jabber.Net.Server.Storages
 
             if (user != null)
             {
-                _users.Remove(user);
+                //_users.Remove(user);
                 _elements.RemoveElements(new Jid(username), "%");
                 return true;
             }
@@ -90,7 +60,9 @@ namespace Jabber.Net.Server.Storages
         public Vcard GetVCard(string username)
         {
             CheckUsername(username);
+
             return (Vcard)_elements.GetElement(new Jid(username), "vcard");
+            return _campusClient.GetVCard(username);
         }
 
         public void SetVCard(string username, Vcard vcard)
@@ -111,8 +83,8 @@ namespace Jabber.Net.Server.Storages
         {
             Args.NotNull(user, "user");
 
-            return RosterItems;
-            return new List<RosterItem>();
+            var rosterItems = GetSubscribers(user).Select(o => new RosterItem(o)).ToList();
+            return rosterItems;
         }
 
         public RosterItem GetRosterItem(Jid user, Jid contact)
@@ -120,19 +92,17 @@ namespace Jabber.Net.Server.Storages
             Args.NotNull(user, "user");
             Args.NotNull(contact, "contact");
 
-            var result = (from o in _rosterItems
-                          where o.Jid.BareJid == contact.BareJid
-                          select o).SingleOrDefault();
-
-            return result;
+            return _campusClient.GetRosterItem(contact);
         }
 
         public IEnumerable<Jid> GetSubscribers(Jid contact)
         {
             Args.NotNull(contact, "contact");
 
-            //return new List<Jid>();
-            return Subscribers;
+            var user = _campusClient.GetUser(contact.User);
+            var sessionId = _campusClient.Authenticate(user.Name, user.Password);
+
+            return _campusClient.GetAllUsers(sessionId);
         }
 
         public void SaveRosterItem(Jid user, RosterItem ri)
@@ -140,7 +110,7 @@ namespace Jabber.Net.Server.Storages
             Args.NotNull(user, "user");
             Args.NotNull(ri, "ri");
 
-            RosterItems.Add(ri);
+            //RosterItems.Add(ri);
         }
 
         public bool RemoveRosterItem(Jid user, Jid contact)
@@ -156,7 +126,7 @@ namespace Jabber.Net.Server.Storages
             Args.NotNull(contact, "contact");
 
             return new List<Jid>();
-            return Subscribers;
+            //return Subscribers;
         }
 
         private void CheckUsername(string username)

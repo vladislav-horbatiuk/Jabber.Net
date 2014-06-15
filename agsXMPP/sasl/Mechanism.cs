@@ -29,7 +29,7 @@ namespace agsXMPP.sasl
 {
     #region usings
 
-    
+
 
     #endregion
 
@@ -54,8 +54,12 @@ namespace agsXMPP.sasl
 
         /// <summary>
         /// </summary>
-        public string Username { // lower case that until i implement our c# port of libIDN
-            get; set; }
+        public string Username
+        {
+            // lower case that until i implement our c# port of libIDN
+            get;
+            set;
+        }
 
         /// <summary>
         /// </summary>
