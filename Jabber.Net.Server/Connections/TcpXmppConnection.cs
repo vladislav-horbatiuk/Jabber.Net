@@ -1,27 +1,25 @@
-﻿using System;
+﻿using agsXMPP.Xml.Dom;
+using Jabber.Net.Server.Handlers;
+using Jabber.Net.Server.Xmpp;
+using System;
 using System.IO;
 using System.Net.Security;
 using System.Net.Sockets;
-using System.Runtime.InteropServices;
-using System.Security.Authentication;
 using System.Security.Cryptography.X509Certificates;
-using agsXMPP.Xml.Dom;
-using Jabber.Net.Server.Handlers;
-using Jabber.Net.Server.Xmpp;
 
 namespace Jabber.Net.Server.Connections
 {
     class TcpXmppConnection : IXmppConnection, IXmppTlsConnection
     {
-        private readonly object locker = new object();
-        private volatile bool closed = false;
+        private readonly object _locker = new object();
+        private volatile bool _closed = false;
 
-        private readonly TcpClient client;
-        private Stream stream;
+        private readonly TcpClient _client;
+        private Stream _stream;
 
-        private XmppHandlerManager handlerManager;
-        private XmppStreamReader reader;
-        private XmppStreamWriter writer;
+        private XmppHandlerManager _handlerManager;
+        private XmppStreamReader _reader;
+        private XmppStreamWriter _writer;
 
         public string SessionId
         {
@@ -31,7 +29,11 @@ namespace Jabber.Net.Server.Connections
 
         public bool TlsStarted
         {
-            get { return stream is SslStream; }
+            get
+            {
+                return false;
+                return _stream is SslStream;
+            }
         }
 
 
@@ -39,8 +41,8 @@ namespace Jabber.Net.Server.Connections
         {
             Args.NotNull(tcpClient, "tcpClient");
 
-            client = tcpClient;
-            stream = client.GetStream();
+            _client = tcpClient;
+            _stream = _client.GetStream();
         }
 
 
@@ -50,7 +52,7 @@ namespace Jabber.Net.Server.Connections
             Args.NotNull(handlerManager, "handlerManager");
             Log.Information(GetType().Name + " begin receive");
 
-            this.handlerManager = handlerManager;
+            this._handlerManager = handlerManager;
             Reset();
         }
 
@@ -59,18 +61,18 @@ namespace Jabber.Net.Server.Connections
         {
             Log.Information(GetType().Name + " {0} reset", SessionId);
 
-            if (reader != null)
+            if (_reader != null)
             {
-                reader.ReadElementCancel();
+                _reader.ReadElementCancel();
             }
 
-            reader = new XmppStreamReader(stream);
-            reader.ReadElementComleted += (s, e) =>
+            _reader = new XmppStreamReader(_stream);
+            _reader.ReadElementComleted += (s, e) =>
             {
                 if (e.State == XmppStreamState.Success)
                 {
                     Log.Information(GetType().Name + " {0} recv <<:\r\n{1:I}\r\n", SessionId, e.Element);
-                    handlerManager.ProcessElement(this, e.Element);
+                    _handlerManager.ProcessElement(this, e.Element);
                 }
                 else if (e.State == XmppStreamState.Error)
                 {
@@ -85,14 +87,14 @@ namespace Jabber.Net.Server.Connections
                     Close();
                 }
             };
-            reader.ReadElementAsync();
+            _reader.ReadElementAsync();
 
-            if (writer != null)
+            if (_writer != null)
             {
-                writer.WriteElementCancel();
+                _writer.WriteElementCancel();
             }
-            writer = new XmppStreamWriter(stream);
-            writer.WriteElementComleted += (s, e) =>
+            _writer = new XmppStreamWriter(_stream);
+            _writer.WriteElementComleted += (s, e) =>
             {
                 if (e.State == XmppStreamState.Error)
                 {
@@ -110,39 +112,39 @@ namespace Jabber.Net.Server.Connections
             Args.NotNull(element, "element");
             Log.Information(GetType().Name + " {0} send >>:\r\n{1:I}\r\n", SessionId, element);
 
-            writer.WriteElementAsync(element, onerror);
+            _writer.WriteElementAsync(element, onerror);
         }
 
         public void Close()
         {
-            lock (locker)
+            lock (_locker)
             {
-                if (closed) return;
-                closed = true;
+                if (_closed) return;
+                _closed = true;
 
                 Log.Information(GetType().Name + " {0} close", SessionId);
 
                 try
                 {
-                    if (stream != null)
+                    if (_stream != null)
                     {
-                        stream.Close();
+                        _stream.Close();
                     }
                 }
                 catch (Exception) { }
                 try
                 {
-                    if (client != null)
+                    if (_client != null)
                     {
-                        client.Close();
+                        _client.Close();
                     }
                 }
                 catch (Exception) { }
                 try
                 {
-                    if (handlerManager != null)
+                    if (_handlerManager != null)
                     {
-                        handlerManager.ProcessClose(this);
+                        _handlerManager.ProcessClose(this);
                     }
                 }
                 catch (Exception) { }
@@ -154,14 +156,14 @@ namespace Jabber.Net.Server.Connections
             Args.NotNull(certificate, "certificate");
             Log.Information(GetType().Name + " {0} start tls", SessionId);
 
-            stream.Flush();
-            if (reader != null)
+            _stream.Flush();
+            if (_reader != null)
             {
-                reader.ReadElementCancel();
+                _reader.ReadElementCancel();
             }
-
-            stream = new SslStream(stream);
-            ((SslStream)stream).AuthenticateAsServer(certificate, false, SslProtocols.Ssl3 | SslProtocols.Tls | SslProtocols.Ssl2, true);
+            
+            //_stream = new SslStream(_stream);
+            //((SslStream)_stream).AuthenticateAsServer(certificate, false, SslProtocols.Ssl3 | SslProtocols.Tls | SslProtocols.Ssl2, true);
 
             Reset();
         }
@@ -169,7 +171,7 @@ namespace Jabber.Net.Server.Connections
 
         private void RequiresNotClosed()
         {
-            Args.Requires<ObjectDisposedException>(!closed, GetType().FullName);
+            Args.Requires<ObjectDisposedException>(!_closed, GetType().FullName);
         }
 
         private bool IgnoreError(Exception error)
