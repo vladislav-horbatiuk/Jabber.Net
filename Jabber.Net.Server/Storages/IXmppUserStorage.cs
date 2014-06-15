@@ -1,24 +1,21 @@
-﻿using System.Collections.Generic;
-using agsXMPP;
-using agsXMPP.protocol.client;
+﻿using agsXMPP;
 using agsXMPP.protocol.iq.roster;
 using agsXMPP.protocol.iq.vcard;
+using System.Collections.Generic;
 
 namespace Jabber.Net.Server.Storages
 {
     public interface IXmppUserStorage
     {
         XmppUser GetUser(string username);
-
+        
         void SaveUser(XmppUser user);
 
         bool RemoveUser(string username);
 
-
         Vcard GetVCard(string username);
 
         void SetVCard(string username, Vcard vcard);
-
 
         IEnumerable<RosterItem> GetRosterItems(Jid user);
 
@@ -31,5 +28,7 @@ namespace Jabber.Net.Server.Storages
         void SaveRosterItem(Jid user, RosterItem ri);
 
         bool RemoveRosterItem(Jid user, Jid contact);
+
+        
     }
 }
