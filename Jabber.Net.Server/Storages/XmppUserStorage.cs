@@ -11,6 +11,7 @@ namespace Jabber.Net.Server.Storages
     {
         private readonly string _connectionStringName;
         private readonly IXmppElementStorage _elements;
+        const string Server = "jabber.ecampus.kpi.ua";
 
         private static readonly List<XmppUser> _users = new List<XmppUser>
         {
@@ -24,12 +25,28 @@ namespace Jabber.Net.Server.Storages
 
         private static List<RosterItem> RosterItems
         {
-            get { return _rosterItems ?? (_rosterItems = Subscribers.Select(o => new RosterItem(o)).ToList()); }
+            get
+            {
+                if (_rosterItems == null)
+                {
+                    _rosterItems = Subscribers.Select(o => new RosterItem(o)).ToList();
+                }
+
+                return _rosterItems;
+            }
         }
 
         private static IEnumerable<Jid> Subscribers
         {
-            get { return _subscribers ?? (_subscribers = _users.Select(o => new Jid(o.Name)).ToList()); }
+            get
+            {
+                if (_subscribers == null)
+                {
+                    _subscribers = _users.Select(o => new Jid(o.Name, Server, "")).ToList();
+                }
+
+                return _subscribers;
+            }
         }
 
         public XmppUserStorage(string connectionStringName, IXmppElementStorage elements)
@@ -93,7 +110,7 @@ namespace Jabber.Net.Server.Storages
         public IEnumerable<RosterItem> GetRosterItems(Jid user)
         {
             Args.NotNull(user, "user");
-            
+
             return RosterItems;
             return new List<RosterItem>();
         }
@@ -103,7 +120,11 @@ namespace Jabber.Net.Server.Storages
             Args.NotNull(user, "user");
             Args.NotNull(contact, "contact");
 
-            return new RosterItem();
+            var result = (from o in _rosterItems
+                          where o.Jid.BareJid == contact.BareJid
+                          select o).SingleOrDefault();
+
+            return result;
         }
 
         public IEnumerable<Jid> GetSubscribers(Jid contact)
