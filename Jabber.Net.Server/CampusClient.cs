@@ -1,8 +1,10 @@
-﻿using System;
-using System.Linq;
-using System.Collections.Generic;
-using agsXMPP;
+﻿using agsXMPP;
+using agsXMPP.protocol.iq.roster;
+using agsXMPP.protocol.iq.vcard;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Jabber.Net.Server
 {
@@ -24,16 +26,26 @@ namespace Jabber.Net.Server
             return new XmppUser(username, password);
         }
 
-        public List<Jid> GetAllUsers(string sessionId)
+        public IEnumerable<Jid> GetAllUsers(string sessionId)
         {
             var url = BuildUrl("User", "GetAllUsers", new { sessionId });
             var response = Get(url);
             var users = JsonConvert.DeserializeObject<IEnumerable<Campus.Common.User>>(response.Data.ToString()) as IEnumerable<Campus.Common.User>;
 
             var result = (from o in users
-                select new Jid(o.Login, Server, "")).ToList();
+                          select new Jid(o.Login, Server, "")).ToList();
 
             return result;
+        }
+
+        public Vcard GetVCard(string username)
+        {
+            throw new NotImplementedException();
+        }
+
+        public RosterItem GetRosterItem(Jid contact)
+        {
+            return new RosterItem(contact);
         }
     }
 }

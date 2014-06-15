@@ -11,10 +11,7 @@ namespace Jabber.Net.Server.Storages
     {
         private readonly string _connectionStringName;
         private readonly IXmppElementStorage _elements;
-        const string Server = "jabber.ecampus.kpi.ua";
-
-        private CampusClient _campusClient;
-
+        private readonly CampusClient _campusClient;
 
         public XmppUserStorage()
         {
@@ -63,7 +60,9 @@ namespace Jabber.Net.Server.Storages
         public Vcard GetVCard(string username)
         {
             CheckUsername(username);
+
             return (Vcard)_elements.GetElement(new Jid(username), "vcard");
+            return _campusClient.GetVCard(username);
         }
 
         public void SetVCard(string username, Vcard vcard)
@@ -93,14 +92,7 @@ namespace Jabber.Net.Server.Storages
             Args.NotNull(user, "user");
             Args.NotNull(contact, "contact");
 
-            return new RosterItem(contact);
-
-
-            //var result = (from o in _rosterItems
-            //              where o.Jid.BareJid == contact.BareJid
-            //              select o).SingleOrDefault();
-
-            //return result;
+            return _campusClient.GetRosterItem(contact);
         }
 
         public IEnumerable<Jid> GetSubscribers(Jid contact)
