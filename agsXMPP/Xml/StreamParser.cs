@@ -174,8 +174,8 @@ namespace agsXMPP.Xml
             int off = 0;
             TOK tok = TOK.END_TAG;
             var ct = new ContentToken();
-            try
-            {
+            //try
+            //{
                 while (off < b.Length)
                 {
                     if (m_cdata)
@@ -249,26 +249,26 @@ namespace agsXMPP.Xml
 
                     off = ct.TokenEnd;
                 }
-            }
-            catch (PartialTokenException)
-            {
-                // ignored;
-            }
-            catch (ExtensibleTokenException)
-            {
-                // ignored;
-            }
-            catch (Exception ex)
-            {
-                if (OnStreamError != null)
-                {
-                    OnStreamError(this, ex);
-                }
-            }
-            finally
-            {
+            //}
+            //catch (PartialTokenException)
+            //{
+            //    // ignored;
+            //}
+            //catch (ExtensibleTokenException)
+            //{
+            //    // ignored;
+            //}
+            //catch (Exception ex)
+            //{
+            //    if (OnStreamError != null)
+            //    {
+            //        OnStreamError(this, ex);
+            //    }
+            //}
+            //finally
+            //{
                 m_buf.Clear(off);
-            }
+            //}
         }
 
         #endregion
@@ -284,20 +284,20 @@ namespace agsXMPP.Xml
         /// </param>
         internal void DoRaiseOnStreamElement(Element el)
         {
-            try
-            {
+            //try
+            //{
                 if (OnStreamElement != null)
                 {
                     OnStreamElement(this, current);
                 }
-            }
-            catch (Exception ex)
-            {
-                if (OnError != null)
-                {
-                    OnError(this, ex);
-                }
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    if (OnError != null)
+            //    {
+            //        OnError(this, ex);
+            //    }
+            //}
         }
 
         #endregion

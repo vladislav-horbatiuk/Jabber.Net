@@ -14,6 +14,7 @@ namespace Jabber.Net.Server
         [Conditional("DEBUG")]
         public static void Information(string format, params object[] args)
         {
+            
             Trace.TraceInformation(AddInfo(format), args);
         }
 

@@ -92,8 +92,8 @@ namespace Jabber.Net.Server.Handlers
 
         public void ProcessElement(IXmppConnection connection, Element element)
         {
-            try
-            {
+            //try
+            //{
                 Args.NotNull(element, "element");
 
                 var session = GetSession(connection);
@@ -127,11 +127,11 @@ namespace Jabber.Net.Server.Handlers
                 {
                     Log.Information("ProcessElement skip, session {0}", session.Id);
                 }
-            }
-            catch (Exception error)
-            {
-                ProcessError(connection, error);
-            }
+            //}
+            //catch (Exception error)
+            //{
+            //    ProcessError(connection, error);
+            //}
         }
 
         public void ProcessClose(IXmppConnection connection)

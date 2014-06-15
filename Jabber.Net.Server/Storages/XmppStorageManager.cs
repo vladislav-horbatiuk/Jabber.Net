@@ -5,8 +5,7 @@ namespace Jabber.Net.Server.Storages
     public class XmppStorageManager
     {
         private readonly ReaderWriterLockDictionary<string, object> storages = new ReaderWriterLockDictionary<string, object>();
-
-
+        
         public IXmppUserStorage Users
         {
             get { return GetStorage<IXmppUserStorage>("users"); }
