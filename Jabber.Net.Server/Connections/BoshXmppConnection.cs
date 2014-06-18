@@ -70,6 +70,7 @@ namespace Jabber.Net.Server.Connections
                 context.Response.ContentEncoding = Encoding.UTF8;
                 context.Response.ContentType = "text/xml; charset=utf-8";
                 context.Response.ContentLength64 = buffer.LongLength;
+                context.Response.Headers.Add("Access-Control-Allow-Origin", "*");
                 context.Response.Close(buffer, true);
             }
             catch (Exception ex)
