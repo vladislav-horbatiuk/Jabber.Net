@@ -83,8 +83,7 @@ namespace Jabber.Net.Server.Storages
         {
             Args.NotNull(user, "user");
 
-            var rosterItems = GetSubscribers(user).Select(o => new RosterItem(o)).ToList();
-            return rosterItems;
+            return _campusClient.GetRosterItems(user);
         }
 
         public RosterItem GetRosterItem(Jid user, Jid contact)

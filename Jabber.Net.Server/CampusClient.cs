@@ -47,6 +47,16 @@ namespace Jabber.Net.Server
         {
             return new RosterItem(contact);
         }
+
+        public IEnumerable<RosterItem> GetRosterItems(Jid contact)
+        {
+            XmppUser user = GetUser(contact.User);
+            string sessionId = Authenticate(user.Name, user.Password);
+            return GetAllUsers(sessionId)
+                .Select(jid =>
+                    new RosterItem { Jid = jid, Name = jid.User, Subscription = SubscriptionType.both });
+
+        }
     }
 }
 
